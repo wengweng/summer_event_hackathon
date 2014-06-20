@@ -47,11 +47,25 @@ public class BuddiesActivity extends Activity implements IBuddiesFragment {
 
 	@Override
 	public void onBuddySelected(Buddy buddy, boolean selected) {
-		if (clicked.contains(buddy)) {
-			clicked.remove(buddy);
+		int pos = 0;
+		for (Buddy myBuddy:clicked) {
+			if (myBuddy.getName().equalsIgnoreCase(buddy.getName())) {
+				break;
+			}
+			pos++;
+		}
+		if (pos <= (clicked.size() - 1) ) {
+			if (selected) {
+				// Do nothing
+			}
+			else {
+				clicked.remove(pos);
+			}
 		}
 		else {
-			clicked.add(buddy);
+			if (selected) {
+				clicked.add(buddy);
+			}
 		}
 	}
 	
