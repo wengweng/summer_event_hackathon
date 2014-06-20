@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.icesabi.android_hackathon.R;
 import com.icesabi.android_hackathon.ui.fragment.MainFragment;
-
+//http://www.bignerdranch.com/blog/solving-the-android-image-loading-problem-volley-vs-picasso/
 public class MainActivity extends Activity {
 
     @Override

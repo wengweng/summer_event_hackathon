@@ -17,7 +17,7 @@
         android:text="Find me a buddy" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/button_start_wifi_direct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/button_find_buddy"

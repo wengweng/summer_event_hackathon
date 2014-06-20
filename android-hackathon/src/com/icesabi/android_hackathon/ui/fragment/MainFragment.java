@@ -1,12 +1,14 @@
 package com.icesabi.android_hackathon.ui.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.icesabi.android_hackathon.R;
+import com.icesabi.android_hackathon.WiFiDirectDiscoveryActivity;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -26,7 +28,16 @@ public class MainFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				
+
+			}
+		});
+    	
+    	view.findViewById(R.id.button_start_wifi_direct).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), WiFiDirectDiscoveryActivity.class);
+				getActivity().startActivity(intent);
 			}
 		});
     }
