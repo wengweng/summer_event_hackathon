@@ -3,17 +3,24 @@ package com.icesabi.android_hackathon.ui.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.icesabi.android_hackathon.R;
 
@@ -22,6 +29,7 @@ import domain.Buddy;
 /**
  * A placeholder fragment containing a simple view.
  */
+@SuppressLint("ValidFragment")
 public class BuddiesFragment extends Fragment {
 
     private GridView grid;
@@ -47,6 +55,16 @@ public class BuddiesFragment extends Fragment {
     	 }
     	 adapter.setList(list);
     	 grid.setAdapter(adapter);
+    	 
+    	 grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				new MyDialogFragment(adapter.getItem(position).getName(), getActivity()).show(getFragmentManager(), "notification_tag" );
+				
+			}
+		});
     	 
     }
     
@@ -113,5 +131,48 @@ public class BuddiesFragment extends Fragment {
 			return convertView;
 		}
     	
+    }
+    
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            switch (which) {
+			case Dialog.BUTTON_POSITIVE:
+				Toast.makeText(getActivity(), "Nope!" , Toast.LENGTH_SHORT).show();
+				break;
+			case Dialog.BUTTON_NEGATIVE:
+				Toast.makeText(getActivity(), "Chicken!" , Toast.LENGTH_SHORT).show();
+				break;
+			default:
+				break;
+			}
+        }
+    };
+    
+    public class MyDialogFragment extends DialogFragment {
+        Context mContext;
+        String name;
+        
+        public MyDialogFragment() {
+        	
+        }
+        public MyDialogFragment(String name, Context context) {
+            mContext = context;
+            this.name = name;
+        }
+        
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
+            alertDialogBuilder.setTitle("Are you sure?");
+            alertDialogBuilder.setMessage("Do you think it is "+ name+ "?");
+            //null should be your on click listener
+            alertDialogBuilder.setPositiveButton("OK", mListener);
+            alertDialogBuilder.setNegativeButton("Cancel", mListener);
+
+
+            return alertDialogBuilder.create();
+        }
     }
 }
