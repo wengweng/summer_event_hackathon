@@ -105,16 +105,19 @@ public class BuddiesFragment extends Fragment {
     private void setList( List<Buddy> buddiesClicked){
     	if (list == null)
     		return;
-    	int pos = 0;
     	for (Buddy buddy : buddiesClicked) {
+    		int pos = 0;
     		for (Buddy myBuddy : list) {
     			if (myBuddy.getName().equalsIgnoreCase(buddy.getName())){
+    				System.out.println(myBuddy.getName() + " is the same as "+ buddy.getName());
     				break;
     			}
     			pos++;
     		}
-    		if (pos <= list.size()) 
+    		if (pos <= (list.size() - 1)) {
+    			System.out.println(Integer.toString(pos));
     			list.get(pos).setChecked(true);
+    		}
     	}
     }
     

@@ -2,156 +2,67 @@
 <resources>
     <string-array
         name="names">
-        <item>Arturo</item>
-        <item>Hans</item>
-        <item>Daan</item>
-        <item>Wang</item>
-        <item>Efren</item>
-        <item>Ralph</item>
-        <item>Katelijn</item>
-        <item>Monique</item>
-        <item>Leon</item>
-        <item>Robin</item>
+        <item>Alberto</item>
         <item>Anna</item>
-        <item>Henk</item>
-        <item>Lorenzo</item>
-        <item>Tom</item>
-        <item>Ties</item>
-        <item>Ioannis</item>
-        <item>Mannon</item>
-        <item>Reinout</item>
-        <item>Willen V.</item>
-        <item>Timo</item>
-        <item>Jeffrey</item>
-        <item>Nick</item>
-        <item>Tim K.</item>
-        <item>Sander</item>
-        <item>Dianne</item>
-        <item>Hei-Yu</item>
-        <item>Luca</item>
-        <item>Tariana</item>
-        <item>Roderick</item>
-        <!--  -->
+        <item>Arie</item>
         <item>Arturo</item>
+        <item>Aurimas</item>
+        <item>Ben</item>
+        <item>Bjorn</item>
+        <item>Bruno</item>
+        <item>Calerio</item>
+        <item>Christian</item>
+        <item>Ciska</item>
+        <item>Daniel</item>
+        <item>Daphne</item>
+        <item>Diana</item>
+        <item>Evan</item>
+        <item>Floor</item>
+        <item>Gaby</item>
+        <item>Gilles</item>
+        <item>Giuseppe</item>
         <item>Hans</item>
-        <item>Daan</item>
-        <item>Wang</item>
-        <item>Efren</item>
-        <item>Ralph</item>
-        <item>Katelijn</item>
-        <item>Monique</item>
-        <item>Leon</item>
-        <item>Robin</item>
-        <item>Anna</item>
-        <item>Henk</item>
-        <item>Lorenzo</item>
-        <item>Tom</item>
-        <item>Ties</item>
-        <item>Ioannis</item>
-        <item>Mannon</item>
-        <item>Reinout</item>
-        <item>Willen V.</item>
-        <item>Timo</item>
-        <item>Jeffrey</item>
-        <item>Nick</item>
-        <item>Tim K.</item>
-        <item>Sander</item>
-        <item>Dianne</item>
         <item>Hei-Yu</item>
-        <item>Luca</item>
-        <item>Tariana</item>
-        <item>Roderick</item>
-        <!--  -->
-        <item>Arturo</item>
-        <item>Hans</item>
-        <item>Daan</item>
-        <item>Wang</item>
-        <item>Efren</item>
-        <item>Ralph</item>
-        <item>Katelijn</item>
-        <item>Monique</item>
-        <item>Leon</item>
-        <item>Robin</item>
-        <item>Anna</item>
         <item>Henk</item>
-        <item>Lorenzo</item>
-        <item>Tom</item>
-        <item>Ties</item>
-        <item>Ioannis</item>
-        <item>Mannon</item>
-        <item>Reinout</item>
-        <item>Willen V.</item>
-        <item>Timo</item>
+        <item>Jaap</item>
+        <item>Jan</item>
         <item>Jeffrey</item>
-        <item>Nick</item>
-        <item>Tim K.</item>
-        <item>Sander</item>
-        <item>Dianne</item>
-        <item>Hei-Yu</item>
-        <item>Luca</item>
-        <item>Tariana</item>
-        <item>Roderick</item>
-        <!--  -->
-        <item>Arturo</item>
-        <item>Hans</item>
-        <item>Daan</item>
-        <item>Wang</item>
-        <item>Efren</item>
-        <item>Ralph</item>
-        <item>Katelijn</item>
-        <item>Monique</item>
+        <item>Jeroen</item>
+        <item>Joost</item>
+        <item>Karlijn</item>
+        <item>Katheline</item>
+        <item>Khan</item>
+        <item>Kim</item>
         <item>Leon</item>
-        <item>Robin</item>
-        <item>Anna</item>
-        <item>Henk</item>
         <item>Lorenzo</item>
-        <item>Tom</item>
-        <item>Ties</item>
-        <item>Ioannis</item>
-        <item>Mannon</item>
-        <item>Reinout</item>
-        <item>Willen V.</item>
-        <item>Timo</item>
-        <item>Jeffrey</item>
-        <item>Nick</item>
-        <item>Tim K.</item>
-        <item>Sander</item>
-        <item>Dianne</item>
-        <item>Hei-Yu</item>
-        <item>Luca</item>
-        <item>Tariana</item>
-        <item>Roderick</item>
-        <!--  -->
-        <item>Arturo</item>
-        <item>Hans</item>
-        <item>Daan</item>
-        <item>Wang</item>
-        <item>Efren</item>
+        <item>Lotte</item>
+        <item>Manon</item>
+        <item>Marcela</item>
+        <item>Marco</item>
+        <item>Marius</item>
+        <item>Marnix</item>
+        <item>Miika</item>
+        <item>Niels J.</item>
+        <item>Niels K.</item>
+        <item>Niel</item>
+        <item>Nils</item>
+        <item>Olav</item>
         <item>Ralph</item>
-        <item>Katelijn</item>
-        <item>Monique</item>
-        <item>Leon</item>
-        <item>Robin</item>
-        <item>Anna</item>
-        <item>Henk</item>
-        <item>Lorenzo</item>
-        <item>Tom</item>
-        <item>Ties</item>
-        <item>Ioannis</item>
-        <item>Mannon</item>
+        <item>Rebecca</item>
         <item>Reinout</item>
-        <item>Willen V.</item>
-        <item>Timo</item>
-        <item>Jeffrey</item>
-        <item>Nick</item>
-        <item>Tim K.</item>
-        <item>Sander</item>
-        <item>Dianne</item>
-        <item>Hei-Yu</item>
-        <item>Luca</item>
-        <item>Tariana</item>
+        <item>Rick</item>
+        <item>Robin</item>
         <item>Roderick</item>
-        <!--  -->
-
+        <item>Rolf</item>
+        <item>Rose</item>
+        <item>Sumeru</item>
+        <item>Syam</item>
+        <item>Thomas</item>
+        <item>Tim</item>
+        <item>Timo</item>
+        <item>Tom</item>
+        <item>Vivienne</item>
+        <item>Wang</item>
+        <item>Willem</item>
     </string-array>
 </resources>
