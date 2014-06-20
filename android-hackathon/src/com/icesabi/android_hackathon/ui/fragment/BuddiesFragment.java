@@ -61,6 +61,9 @@ public class BuddiesFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				Buddy buddy = adapter.getItem(position);
+				buddy.setChecked(! buddy.isChecked());
+				adapter.notifyDataSetChanged();
 				new MyDialogFragment(adapter.getItem(position).getName(), getActivity()).show(getFragmentManager(), "notification_tag" );
 				
 			}
@@ -128,6 +131,13 @@ public class BuddiesFragment extends Fragment {
 			
 			TextView name =  ((TextView) convertView.findViewById(R.id.buddy_name));
 			name.setText(buddy.getName());
+			
+			if (buddy.isChecked()) {
+				convertView.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+			}
+			else {
+				convertView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+			}
 			return convertView;
 		}
     	
