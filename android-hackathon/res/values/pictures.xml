@@ -25,6 +25,8 @@
         <item >@drawable/henkdonkervoort</item>
         <item >@drawable/jaapolsthoorn</item>
         <item >@drawable/jantrutzschlervonfalkenstein</item>
+        <item >@drawable/jasperwillemsen</item>
+        <item >@drawable/jasperwoudenberg</item>
         <item >@drawable/jeffreyklardie</item>
         <item >@drawable/jeroenpietryga</item>
         <item >@drawable/joostjongbloed</item>
@@ -35,18 +37,23 @@
         <item >@drawable/leonversteeg</item>
         <item >@drawable/lorenzomarchiori</item>
         <item >@drawable/lottejonkman</item>
+        <item >@drawable/lucamaraschi</item>
         <item >@drawable/manonlevasseur</item>
         <item >@drawable/marcelabrandi</item>
         <item >@drawable/marcoantoniocordeirosilva</item>
         <item >@drawable/mariusvledder</item>
         <item >@drawable/marnixarnold</item>
         <item >@drawable/miikakossi</item>
+        <item >@drawable/monikanowak</item>
+        <item >@drawable/moniquecopier</item>
         <item >@drawable/nielsjanssen</item>
         <item >@drawable/nielskrijger</item>
         <item >@drawable/nielvanmiddelkoop</item>
         <item >@drawable/nilsvanduymaervantwist</item>
         <item >@drawable/olavvandam</item>
+        <item >@drawable/oleksanderberezhnyi</item>
         <item >@drawable/ralphcohen</item>
+        <item >@drawable/raymondbrandon</item>
         <item >@drawable/rebeccavandertholen</item>
         <item >@drawable/reinoutdullaart</item>
         <item >@drawable/rickdehoop</item>
@@ -54,12 +61,14 @@
         <item >@drawable/roderiklagerweij</item>
         <item >@drawable/rolfkoenders</item>
         <item >@drawable/rosemarumanu</item>
+        <item >@drawable/sandervanduijn</item>
         <item >@drawable/sumeruchatterjee</item>
         <item >@drawable/syamsampatsing</item>
         <item >@drawable/thomaspienaar</item>
         <item >@drawable/timkrengel</item>
         <item >@drawable/timothyvelberg</item>
         <item >@drawable/tombartels</item>
+        <item >@drawable/valeriobarrila</item>
         <item >@drawable/vivienneklaassens</item>
         <item >@drawable/wangshihu</item>
         <item >@drawable/willemverkerk</item>

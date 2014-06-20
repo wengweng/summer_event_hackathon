@@ -24,9 +24,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.icesabi.android_hackathon.MainApplication;
 import com.icesabi.android_hackathon.R;
 
 import domain.Buddy;
+import domain.MessageAnswer;
+import domain.MessageQuestion;
 
 @SuppressLint("ValidFragment")
 public class BuddiesFragment extends Fragment {
@@ -34,6 +37,7 @@ public class BuddiesFragment extends Fragment {
 	
 	public interface IBuddiesFragment {
 		public void triggerQuestion();
+		public void triggerList();
 		public void onBuddySelected(Buddy position, boolean selected);
 		public List<Buddy> getCheckedBuddies();
 	}
@@ -42,6 +46,7 @@ public class BuddiesFragment extends Fragment {
     private BuddyAdapter adapter;
 	private IBuddiesFragment mCallback;
 	private ArrayList<Buddy> list;
+	
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,6 +130,10 @@ public class BuddiesFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         
+        
+        MainApplication app = (MainApplication) getActivity().getApplication();
+        app.fragment = this;
+        
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -134,6 +143,49 @@ public class BuddiesFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
+    
+    public void onMessageQuestion(final MessageQuestion message) {
+    	final MainApplication app = (MainApplication) getActivity().getApplication();
+    	
+    	getActivity().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+				AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+				builder.setTitle("Question")
+					.setMessage(message.question)
+					.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							app.sendAnswer(true);
+						}
+					})
+					.setNegativeButton("No", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							app.sendAnswer(false);
+						}
+					}).create().show();
+			}
+		});
+    }
+    
+    public void onMessageAnswer(final MessageAnswer message) {
+    	
+    	getActivity().runOnUiThread(new Runnable() {
+			
+			@Override
+			public void run() {
+		    	AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		    	builder.setTitle("Answer")
+		    		.setMessage(message.answer? "Yes": "No")
+		    		.create().show();
+			}
+    	});
+    }
+    
     
     public class BuddyAdapter extends BaseAdapter {
     	

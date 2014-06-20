@@ -1,11 +1,16 @@
 package com.icesabi.android_hackathon;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.InetAddress;
 import java.util.Collection;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.net.wifi.WpsInfo;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pDeviceList;
@@ -25,6 +30,7 @@ public class WiFiDirectDiscoveryActivity extends Activity implements PeerListLis
 	private Channel mChannel;
 	private BroadcastReceiver mReceiver;
 	private IntentFilter mIntentFilter;
+	public InetAddress host;
 	
 	
 	private ListView listView;
@@ -108,14 +114,18 @@ public class WiFiDirectDiscoveryActivity extends Activity implements PeerListLis
     	
     }
     
-	private void connectToDevice(WifiP2pDevice device) {
+	private void connectToDevice(final WifiP2pDevice device) {
 		WifiP2pConfig config = new WifiP2pConfig();
 		config.deviceAddress = device.deviceAddress;
+		config.wps.setup = WpsInfo.PBC;
 		mManager.connect(mChannel, config, new ActionListener() {
 
 		    @Override
 		    public void onSuccess() {
 		        System.out.println("connect success");
+		        MainApplication app = (MainApplication) getApplication();
+		        app.connectToServer(host);
+		        
 		    }
 
 		    @Override
@@ -125,5 +135,7 @@ public class WiFiDirectDiscoveryActivity extends Activity implements PeerListLis
 		    }
 		});
 	}
+	
+
 }
 

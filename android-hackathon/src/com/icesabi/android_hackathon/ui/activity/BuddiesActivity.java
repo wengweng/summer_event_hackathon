@@ -16,6 +16,7 @@ import domain.Buddy;
 public class BuddiesActivity extends Activity implements IBuddiesFragment {
 
 	List<Buddy> clicked = new ArrayList<Buddy>();
+	QuestionFragment questionFragment;
 	
 	 public enum STEP {
 		BUDDIES, QUESTION
@@ -39,9 +40,9 @@ public class BuddiesActivity extends Activity implements IBuddiesFragment {
 	@Override
 	public void triggerQuestion() {
 		mStep = STEP.QUESTION;
-		QuestionFragment fragment = new QuestionFragment();
+		questionFragment = new QuestionFragment();
 		getFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment, "question_fragment").setTransition(android.R.anim.fade_in)
+                .add(R.id.container, questionFragment, "question_fragment").setTransition(android.R.anim.fade_in)
                 .commit();
 	}
 
@@ -76,11 +77,7 @@ public class BuddiesActivity extends Activity implements IBuddiesFragment {
 			finish();
 			break;
 		case QUESTION:
-			mStep = STEP.BUDDIES;
-			BuddiesFragment fragment = new BuddiesFragment();
-			getFragmentManager().beginTransaction()
-			.replace(R.id.container, fragment, "buddies_fragment").setTransition(android.R.anim.fade_in)
-			.commit();
+			triggerList();
 			break;
 			default:
 				break;
@@ -90,6 +87,14 @@ public class BuddiesActivity extends Activity implements IBuddiesFragment {
 	@Override
 	public List<Buddy> getCheckedBuddies() {
 		return clicked;
+	}
+
+	@Override
+	public void triggerList() {
+		mStep = STEP.BUDDIES;
+		getFragmentManager().beginTransaction()
+                .remove(questionFragment)
+                .commit();
 	}
 
 }
