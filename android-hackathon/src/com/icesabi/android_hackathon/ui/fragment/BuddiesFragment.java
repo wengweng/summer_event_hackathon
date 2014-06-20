@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -27,14 +28,20 @@ import com.icesabi.android_hackathon.R;
 
 import domain.Buddy;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 @SuppressLint("ValidFragment")
 public class BuddiesFragment extends Fragment {
+	
+	
+	public interface IBuddiesFragment {
+		public void triggerQuestion();
+		public void onBuddySelected(Buddy position, boolean selected);
+		public List<Buddy> getCheckedBuddies();
+	}
 
     private GridView grid;
     private BuddyAdapter adapter;
+	private IBuddiesFragment mCallback;
+	private ArrayList<Buddy> list;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,15 +53,18 @@ public class BuddiesFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
     	 grid = (GridView) view.findViewById(R.id.grid_buddies);
-    	 adapter = new BuddyAdapter(getActivity());
-    	 List<Buddy> list = new ArrayList<Buddy>();
     	 
+    	 adapter = new BuddyAdapter(getActivity());
+    	 list = new ArrayList<Buddy>();
     	 String[] names = getResources().getStringArray(R.array.names);
     	 TypedArray pictures = getResources().obtainTypedArray(R.array.pictures);
     	 for (int i = 0;i < names.length ;i++) {
     		 list.add(new Buddy(names[i], pictures.getDrawable(i)));
     	 }
+    	 
     	 adapter.setList(list);
+    	 setList(mCallback.getCheckedBuddies());
+    	 
     	 grid.setAdapter(adapter);
     	 
     	 grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -64,6 +74,7 @@ public class BuddiesFragment extends Fragment {
 					int position, long id) {
 				Buddy buddy = adapter.getItem(position);
 				buddy.setChecked(! buddy.isChecked());
+				mCallback.onBuddySelected(buddy, buddy.isChecked());
 				adapter.notifyDataSetChanged();
 			}
 		});
@@ -78,6 +89,47 @@ public class BuddiesFragment extends Fragment {
 				return false;
 			}
 		});
+    	 
+    	 
+    	 view.findViewById(R.id.notification_container).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				mCallback.triggerQuestion();
+			}
+		});
+    }
+    
+    
+    
+    private void setList( List<Buddy> buddiesClicked){
+    	if (list == null)
+    		return;
+    	int pos = 0;
+    	for (Buddy buddy : buddiesClicked) {
+    		for (Buddy myBuddy : list) {
+    			if (myBuddy.getName().equalsIgnoreCase(buddy.getName())){
+    				break;
+    			}
+    			pos++;
+    		}
+    		if (pos <= list.size()) 
+    			list.get(pos).setChecked(true);
+    	}
+    }
+    
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (IBuddiesFragment) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
     }
     
     public class BuddyAdapter extends BaseAdapter {
