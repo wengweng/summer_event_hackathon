@@ -41,11 +41,10 @@
                 <action android:name="android.net.wifi.p2p.THIS_DEVICE_CHANGED" />
             </intent-filter>
         </activity>
-        <!-- 
-        <receiver android:name="com.icesabi.android_hackathon.WiFiDirectBroadcastReceiver">
-            
-        </receiver>
- -->
+		<activity
+            android:name="com.icesabi.android_hackathon.ui.activity.BuddiesActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar"  >
+        </activity>
     </application>
 
 </manifest>
