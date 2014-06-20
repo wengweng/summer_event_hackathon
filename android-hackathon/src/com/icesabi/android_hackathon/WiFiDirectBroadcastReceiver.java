@@ -11,7 +11,7 @@ import android.net.wifi.p2p.WifiP2pManager;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
 import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 
-public class WiFiDirectBroadcastReceiver extends BroadcastReceiver implements PeerListListener {
+public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
 
     private WifiP2pManager mManager;
     private Channel mChannel;
@@ -44,7 +44,7 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver implements Pe
             // Call WifiP2pManager.requestPeers() to get a list of current peers
         	System.out.println("Call WifiP2pManager.requestPeers() to get a list of current peers");
         	if (mManager != null) {
-                mManager.requestPeers(mChannel, this);
+                mManager.requestPeers(mChannel, mActivity);
             }
         } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
             // Respond to new connection or disconnections
@@ -55,12 +55,4 @@ public class WiFiDirectBroadcastReceiver extends BroadcastReceiver implements Pe
         }
     }
     
-    @Override
-    public void onPeersAvailable(WifiP2pDeviceList peers) {
-    	Collection<WifiP2pDevice> devices = peers.getDeviceList();
-    	for(WifiP2pDevice device: devices) {
-    		System.out.println(device.deviceName);
-    	}
-    	
-    }
 }

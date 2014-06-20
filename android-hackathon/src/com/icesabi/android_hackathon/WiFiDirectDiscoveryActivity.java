@@ -1,23 +1,35 @@
 package com.icesabi.android_hackathon;
 
+import java.util.Collection;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
+import android.net.wifi.p2p.WifiP2pConfig;
+import android.net.wifi.p2p.WifiP2pDevice;
+import android.net.wifi.p2p.WifiP2pDeviceList;
 import android.net.wifi.p2p.WifiP2pManager;
+import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.net.wifi.p2p.WifiP2pManager.Channel;
+import android.net.wifi.p2p.WifiP2pManager.PeerListListener;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
-public class WiFiDirectDiscoveryActivity extends Activity {
+public class WiFiDirectDiscoveryActivity extends Activity implements PeerListListener {
 	private WifiP2pManager mManager;
 	private Channel mChannel;
 	private BroadcastReceiver mReceiver;
 	private IntentFilter mIntentFilter;
 	
 	
+	private ListView listView;
 	private Button discoverButton;
+	private ArrayAdapter<WifiP2pDevice> adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +47,15 @@ public class WiFiDirectDiscoveryActivity extends Activity {
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
 	    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 	    
+	    listView = (ListView) findViewById(R.id.listView1);
+	    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	    	@Override
+	    	public void onItemClick(AdapterView<?> parent, View view,
+	    			int position, long id) {
+	    		connectToDevice(adapter.getItem(position));
+	    	}
+
+		});
 	    discoverButton = (Button) findViewById(R.id.button1);
 	    discoverButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -69,6 +90,38 @@ public class WiFiDirectDiscoveryActivity extends Activity {
 		    public void onFailure(int reasonCode) {
 		    	System.out.println("discover failed");
 		       
+		    }
+		});
+	}
+
+    @Override
+    public void onPeersAvailable(WifiP2pDeviceList peers) {
+    	Collection<WifiP2pDevice> devices = peers.getDeviceList();
+    	
+    	adapter = new ArrayAdapter<WifiP2pDevice>(this, R.layout.buddy_list_row, R.id.textView1);
+    	adapter.addAll(devices);
+    	this.listView.setAdapter(adapter);
+    	
+    	for(WifiP2pDevice device: devices) {
+    		System.out.println(device.deviceName);
+    	}
+    	
+    }
+    
+	private void connectToDevice(WifiP2pDevice device) {
+		WifiP2pConfig config = new WifiP2pConfig();
+		config.deviceAddress = device.deviceAddress;
+		mManager.connect(mChannel, config, new ActionListener() {
+
+		    @Override
+		    public void onSuccess() {
+		        System.out.println("connect success");
+		    }
+
+		    @Override
+		    public void onFailure(int reason) {
+		        //failure logic
+		    	System.out.println("connect failed");
 		    }
 		});
 	}
