@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -64,11 +65,19 @@ public class BuddiesFragment extends Fragment {
 				Buddy buddy = adapter.getItem(position);
 				buddy.setChecked(! buddy.isChecked());
 				adapter.notifyDataSetChanged();
-				new MyDialogFragment(adapter.getItem(position).getName(), getActivity()).show(getFragmentManager(), "notification_tag" );
-				
 			}
 		});
     	 
+    	 grid.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				new MyDialogFragment(adapter.getItem(position).getName(), getActivity()).show(getFragmentManager(), "notification_tag" );
+				
+				return false;
+			}
+		});
     }
     
     public class BuddyAdapter extends BaseAdapter {
@@ -125,7 +134,7 @@ public class BuddiesFragment extends Fragment {
 				convertView = LayoutInflater.from(mContext).inflate(R.layout.buddy_item, null);
 			}
 			
-			Buddy buddy = getItem(position);
+			final Buddy buddy = getItem(position);
 			ImageView image = ((ImageView) convertView.findViewById(R.id.buddy_picture));
 			image.setImageDrawable(buddy.getPicture());
 			
@@ -134,9 +143,11 @@ public class BuddiesFragment extends Fragment {
 			
 			if (buddy.isChecked()) {
 				convertView.setBackgroundColor(getResources().getColor(android.R.color.darker_gray));
+				name.setTextColor(getResources().getColor(android.R.color.black));
 			}
 			else {
 				convertView.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+				name.setTextColor(getResources().getColor(android.R.color.tertiary_text_dark));
 			}
 			return convertView;
 		}
