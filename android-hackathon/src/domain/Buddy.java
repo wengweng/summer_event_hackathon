@@ -1,19 +1,21 @@
 package domain;
 
+import android.graphics.drawable.Drawable;
+
 public class Buddy {
-	private String picture;
+	private Drawable picture;
 	private String name;
 	
 	
-	public Buddy(String name, String picture){
+	public Buddy(String name, Drawable picture){
 		this.name = name;
 		this.picture = picture;
 	}
 	
-	public String getPicture() {
+	public Drawable getPicture() {
 		return picture;
 	}
-	public void setPicture(String picture) {
+	public void setPicture(Drawable picture) {
 		this.picture = picture;
 	}
 	public String getName() {

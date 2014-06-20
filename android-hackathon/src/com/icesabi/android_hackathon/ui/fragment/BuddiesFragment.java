@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,8 +39,11 @@ public class BuddiesFragment extends Fragment {
     	 grid = (GridView) view.findViewById(R.id.grid_buddies);
     	 adapter = new BuddyAdapter(getActivity());
     	 List<Buddy> list = new ArrayList<Buddy>();
-    	 for (int i = 0;i < 80 ;i++) {
-    		 list.add(new Buddy("Henk", "henk"));
+    	 
+    	 String[] names = getResources().getStringArray(R.array.names);
+    	 TypedArray pictures = getResources().obtainTypedArray(R.array.pictures);
+    	 for (int i = 0;i < names.length ;i++) {
+    		 list.add(new Buddy(names[i], pictures.getDrawable(i)));
     	 }
     	 adapter.setList(list);
     	 grid.setAdapter(adapter);
@@ -102,7 +106,7 @@ public class BuddiesFragment extends Fragment {
 			
 			Buddy buddy = getItem(position);
 			ImageView image = ((ImageView) convertView.findViewById(R.id.buddy_picture));
-			image.setImageDrawable(mContext.getResources().getDrawable(android.R.drawable.ic_menu_rotate));
+			image.setImageDrawable(buddy.getPicture());
 			
 			TextView name =  ((TextView) convertView.findViewById(R.id.buddy_name));
 			name.setText(buddy.getName());

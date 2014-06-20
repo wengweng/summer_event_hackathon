@@ -12,7 +12,8 @@
         android:id="@+id/grid_buddies"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="4" >
+        android:numColumns="4"
+        android:horizontalSpacing="10dp" >
     </GridView>
 
 </RelativeLayout>
